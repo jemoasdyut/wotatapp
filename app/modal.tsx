@@ -1,29 +1,53 @@
 import { Link } from 'expo-router';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
-import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
+import { BodySmall, Button, Heading2, Logo } from '@/components/ui';
+import { Colors, Spacing } from '@/constants';
 
 export default function ModalScreen() {
   return (
-    <ThemedView style={styles.container}>
-      <ThemedText type="title">This is a modal</ThemedText>
-      <Link href="/" dismissTo style={styles.link}>
-        <ThemedText type="link">Go to home screen</ThemedText>
-      </Link>
-    </ThemedView>
+    <View style={styles.container}>
+      <View style={styles.content}>
+        <Logo size="large" />
+        <Heading2 style={styles.title}>WorthAI Modal</Heading2>
+        <BodySmall color="textSecondary" style={styles.subtitle}>
+          This is a modal screen with consistent branding
+        </BodySmall>
+        <Link href="/" dismissTo asChild>
+          <Button title="Go to Home" variant="primary" style={styles.button} />
+        </Link>
+      </View>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: Colors.background,
     alignItems: 'center',
     justifyContent: 'center',
-    padding: 20,
+    padding: Spacing.xl,
   },
-  link: {
-    marginTop: 15,
-    paddingVertical: 15,
+  
+  content: {
+    alignItems: 'center',
+    maxWidth: 300,
+  },
+  
+  title: {
+    marginTop: Spacing.lg,
+    marginBottom: Spacing.sm,
+    textAlign: 'center',
+  },
+  
+  subtitle: {
+    textAlign: 'center',
+    marginBottom: Spacing.xl,
+    lineHeight: 20,
+  },
+  
+  button: {
+    minWidth: 200,
   },
 });
